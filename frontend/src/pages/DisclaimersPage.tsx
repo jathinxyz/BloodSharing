@@ -76,7 +76,7 @@ export const DisclaimersPage: React.FC = () => {
               Blood Matcher is not an automated emergency dispatch service. Do NOT wait for website responses or email notifications during an acute surgical trauma or hemorrhage.
             </p>
             <p style={{ fontSize: '0.9rem', color: '#78350f', lineHeight: 1.6 }}>
-              Immediately contact emergency response services (e.g. 911 / local emergency number), regional blood banks, or trauma centers directly for immediate supply coordination.
+              Immediately contact emergency response services (e.g. 112 / national emergency helpline), regional blood banks, or trauma centers directly for immediate supply coordination.
             </p>
           </div>
         </div>

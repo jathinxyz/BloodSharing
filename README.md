@@ -129,6 +129,6 @@ Frontend will run on `http://localhost:3000` (or `5173`) and automatically proxy
 
 > **IMPORTANT DISCLAIMER**:
 > This platform provides **preliminary matching assistance only**.
-> - **In Medical Emergencies**: Call emergency services (e.g., 911) or proceed immediately to the nearest hospital emergency room.
+> - **In Medical Emergencies**: Call emergency services (e.g., 112 in India) or proceed immediately to the nearest hospital emergency room.
 > - **Screening & Compatibility**: All donor eligibility screening, infectious disease testing, ABO/Rh cross-matching, and transfusion decisions must be executed by certified medical personnel and licensed blood banks.
 > - **Donor Privacy**: Donor contact information is never published publicly and is disclosed only when a donor explicitly accepts an urgent matching invitation.

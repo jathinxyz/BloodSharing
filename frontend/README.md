@@ -137,7 +137,7 @@ npm run preview
 ## 4. Key Functional Features
 
 ### 1. Transparent Medical Disclaimers & Emergency Notice
-- **Emergency Notice**: Displayed on all pages to ensure patients in immediate medical danger call emergency services (e.g., 911 or local emergency numbers) rather than waiting for an online response.
+- **Emergency Notice**: Displayed on all pages to ensure patients in immediate medical danger call emergency services (e.g., 112 or local emergency numbers) rather than waiting for an online response.
 - **Safety Disclaimers**: Clarifies that Blood Matcher provides **preliminary screening only**; all donor eligibility, infectious disease testing, and laboratory cross-matching must be performed by authorized medical personnel and certified blood banks.
 
 ### 2. Authentication & Authorization
