@@ -93,8 +93,8 @@ Frontend will run on `http://localhost:3000` (or `5173`) and automatically proxy
 4. Flyway automatically runs database migrations upon backend startup.
 
 ### B. Backend Deployment (Railway)
-1. Sign in to [Railway](https://railway.app/).
-2. Create a **New Project** -> **Deploy from GitHub repo** -> select `jathinxyz/BloodSharing`.
+1. Sign in to [Railway](https://railway.app/) using GitHub account **`jathinxyz`**.
+2. Click **+ New Project** -> **Deploy from GitHub repo** -> select `jathinxyz/BloodSharing`.
 3. In Service Settings:
    - Set **Root Directory** to `/backend`.
    - Set **Builder** to `DOCKERFILE` (uses `backend/Dockerfile`).
@@ -106,13 +106,14 @@ Frontend will run on `http://localhost:3000` (or `5173`) and automatically proxy
    | `DB_USERNAME` | `<AIVEN_USER>` | Aiven username |
    | `DB_PASSWORD` | `<AIVEN_PASSWORD>` | Aiven password |
    | `JWT_SECRET` | Strong 256-bit string (min 32 characters) | Secret key for JWT signature |
-   | `APP_CORS_ALLOWED_ORIGINS` | `https://<YOUR_VERCEL_APP>.vercel.app` | Allowed frontend URL |
+   | `APP_CORS_ALLOWED_ORIGINS` | `https://<YOUR_VERCEL_APP>.vercel.app,https://*.vercel.app,http://localhost:5173` | Allowed frontend URLs and preview deployments |
    | `ADMIN_EMAIL` | `admin@bloodmatcher.org` | Initial bootstrap admin email |
-   | `ADMIN_PASSWORD` | Strong password | Initial bootstrap admin password |
-5. Click **Deploy**. Once healthy, generate a public Railway domain (e.g. `https://bloodmatcher-backend-production.up.railway.app`).
+   | `ADMIN_PASSWORD` | Strong password (e.g. 16+ chars) | Initial bootstrap admin password |
+5. Click **Deploy**. Once healthy, generate a public Railway domain under **Networking** (e.g. `https://bloodsharing-production.up.railway.app`).
+6. Test backend health: Open `https://<YOUR_RAILWAY_URL>/actuator/health` in your browser. It should respond with `{"status":"UP"}`.
 
 ### C. Frontend Deployment (Vercel)
-1. Sign in to [Vercel](https://vercel.com/).
+1. Sign in to [Vercel](https://vercel.com/) with GitHub account **`jathinxyz`**.
 2. Click **Add New...** -> **Project** -> import `jathinxyz/BloodSharing`.
 3. In Project Configuration:
    - **Root Directory**: `frontend`
@@ -120,12 +121,26 @@ Frontend will run on `http://localhost:3000` (or `5173`) and automatically proxy
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. In **Environment Variables**:
-   - `VITE_API_BASE_URL`: `https://<YOUR_RAILWAY_BACKEND_DOMAIN>` (e.g. `https://bloodmatcher-backend-production.up.railway.app`)
+   - `VITE_API_BASE_URL`: `https://<YOUR_RAILWAY_BACKEND_DOMAIN>` (e.g. `https://bloodsharing-production.up.railway.app` without trailing slash)
 5. Click **Deploy**. Vercel will build and assign your production URL.
+6. Copy the assigned Vercel domain and verify that it matches or is included in Railway's `APP_CORS_ALLOWED_ORIGINS`.
 
 ---
 
-## 5. Medical Safety & Privacy Notice
+## 5. Deployment Verification Checklist
+
+Once both services are running:
+1. **Database & Schema**: Check Railway deployment logs to confirm Flyway completed migration `V1__init_schema.sql` successfully.
+2. **Backend Health**: Visit `https://<RAILWAY_URL>/actuator/health` (returns `{"status":"UP"}`).
+3. **Public API Connectivity**: Visit `https://<RAILWAY_URL>/api/public/info` (returns system version and platform metrics).
+4. **Frontend Delivery**: Visit `https://<VERCEL_URL>/` and verify:
+   - Emergency banner displays India national emergency helpline `112`.
+   - Navigation links (How it works, Compatibility matrix, Disclaimers) work without 404s.
+5. **End-to-End Auth**: Test registering a donor/recipient or signing in with the bootstrap admin account to confirm frontend-to-backend CORS and JWT issuance.
+
+---
+
+## 6. Medical Safety & Privacy Notice
 
 > **IMPORTANT DISCLAIMER**:
 > This platform provides **preliminary matching assistance only**.
